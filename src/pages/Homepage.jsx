@@ -7,7 +7,6 @@ export default function Homepage() {
     <main className={styles.homepage}>
       <section>
         <PageNav />
-        
         <h1>
           You travel the world.
           <br />
