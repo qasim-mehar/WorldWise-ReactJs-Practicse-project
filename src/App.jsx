@@ -3,6 +3,7 @@ import React from 'react'
 import Homepage from './pages/homepage'
 import Pricing from './pages/Pricing'
 import Product from './pages/product'
+import Login from "./pages/Login"
 import PageNotFound from "./pages/PageNotFound"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AppLayout from './pages/AppLayout'
@@ -16,6 +17,7 @@ export default function App() {
            <Route path='pricing' element={<Pricing/>}> </Route>
            <Route path='*' element={<PageNotFound/>}></Route>
            <Route path='/app' element={<AppLayout/>}></Route>
+           <Route path="/login" element={<Login/>}></Route>
         </Routes>
     </BrowserRouter>
   )
