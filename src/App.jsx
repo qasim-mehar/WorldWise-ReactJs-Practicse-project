@@ -12,7 +12,7 @@ export default function App() {
   return (
     <BrowserRouter>
         <Routes>
-           <Route path='/' element={<Homepage/>}> </Route>
+           <Route index element={<Homepage/>}> </Route>
            <Route path='product' element={<Product/>}> </Route>
            <Route path='pricing' element={<Pricing/>}> </Route>
            <Route path='*' element={<PageNotFound/>}></Route>
