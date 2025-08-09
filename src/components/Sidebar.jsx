@@ -1,4 +1,5 @@
 import React, { StrictMode } from 'react'
+import { Outlet } from 'react-router-dom'
 import styles from "./sidebar.module.css"
 import Logo from './Logo'
 import AppNav from './AppNav'
@@ -7,7 +8,7 @@ export default function Sidebar() {
     <div className={styles.sidebar}>
         <Logo/>
         <AppNav/>
-        <p> Country</p>
+        <Outlet/>
         <footer className={styles.footer}>
             <p className={styles.copyright}>
               &copy; copyright {new Date().getFullYear()} by worldwise inc.
