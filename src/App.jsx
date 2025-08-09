@@ -16,7 +16,11 @@ export default function App() {
            <Route path='product' element={<Product/>}> </Route>
            <Route path='pricing' element={<Pricing/>}> </Route>
            <Route path='*' element={<PageNotFound/>}></Route>
-           <Route path='/app' element={<AppLayout/>}></Route>
+           <Route path='/app' element={<AppLayout/>}>
+             <Route index element={<p>List</p>}></Route>
+             <Route path='cities' element={<p>List of cities</p>}></Route>
+             <Route path='countries' element={<p>List of Country</p>}></Route>
+           </Route>
            <Route path="/login" element={<Login/>}></Route>
         </Routes>
     </BrowserRouter>
