@@ -5,7 +5,7 @@ export default function AppNav() {
     <nav className={styles.nav}>
       <ul>
         <li>
-          Land
+          App Navigation
         </li>
       </ul>
     </nav>

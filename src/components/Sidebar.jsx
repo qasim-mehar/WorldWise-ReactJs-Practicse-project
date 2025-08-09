@@ -4,7 +4,7 @@ import Logo from './Logo'
 import AppNav from './AppNav'
 export default function Sidebar() {
   return (
-    <div className={styles.Sidebar}>
+    <div className={styles.sidebar}>
         <Logo/>
         <AppNav/>
         <p> Country</p>
