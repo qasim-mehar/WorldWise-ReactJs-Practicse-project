@@ -3,11 +3,15 @@ import {MapContainer,  TileLayer,Marker,Popup,useMap, useMapEvent,} from 'react-
 import styles from './Map.module.css';
 import { useEffect, useState } from 'react';
 import { useCities } from '../Contexts/CitiesContext';
+import { useGeolocation } from '../../Hooks/useGeoLocation';
+import Button from "./Button"
 
 
 function Map() {
-  const [mapPosition, setMapPossition] =useState([40, 0]);
+    const navigate= useNavigate()
+  const [mapPosition, setMapPossition] =useState([40,0]);
   const {cities} =useCities();
+  const {isLoading :isLoadingPosition, position:geolocationPosition, getPosition}=useGeolocation(null);
  
   const [searchParam]= useSearchParams();
   const mapLat=searchParam.get('lat');
@@ -18,10 +22,16 @@ function Map() {
     if(mapLat || mapLng) setMapPossition([parseFloat(mapLat), parseFloat(mapLng)]);
   },[mapLat,mapLng])
 
+useEffect(function(){
+  console.log(geolocationPosition);
+ if(geolocationPosition){setMapPossition([parseFloat(geolocationPosition.lat),parseFloat(geolocationPosition.lng)]);}
+// console.log([geolocationPosition.lat,geolocationPosition.lng]);
+},[geolocationPosition])
 
   return (
     <div className={styles.mapContainer} onClick={()=>navigate("form")}>
      <MapContainer className={styles.map} center={mapPosition} zoom={6} scrollWheelZoom={true}>
+      {!geolocationPosition&&<Button type="position" onClick={()=>getPosition()}>{isLoadingPosition?"Loading...":"Get you Loction"}</Button>}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
