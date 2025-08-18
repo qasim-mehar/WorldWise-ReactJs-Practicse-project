@@ -22,13 +22,13 @@ function Map() {
   },[mapLat,mapLng])
 
 useEffect(function(){
-  console.log(geolocationPosition);
+ 
  if(geolocationPosition){setMapPossition([parseFloat(geolocationPosition.lat),parseFloat(geolocationPosition.lng)]);}
 // console.log([geolocationPosition.lat,geolocationPosition.lng]);
 },[geolocationPosition])
 
   return (
-    <div className={styles.mapContainer} onClick={()=>navigate("form")}>
+    <div className={styles.mapContainer} >
      <MapContainer className={styles.map} center={mapPosition} zoom={6} scrollWheelZoom={true}>
       {!geolocationPosition&&<Button type="position" onClick={()=>getPosition()}>{isLoadingPosition?"Loading...":"Get you Loction"}</Button>}
         <TileLayer
