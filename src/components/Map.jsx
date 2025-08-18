@@ -4,18 +4,17 @@ import styles from './Map.module.css';
 import { useEffect, useState } from 'react';
 import { useCities } from '../Contexts/CitiesContext';
 import { useGeolocation } from '../../Hooks/useGeoLocation';
+import { useURLPosition } from '../../Hooks/useURLPosition';
 import Button from "./Button"
 
 
 function Map() {
-    const navigate= useNavigate()
+  const navigate= useNavigate()
   const [mapPosition, setMapPossition] =useState([40,0]);
   const {cities} =useCities();
+  const [mapLat,mapLng]=useURLPosition()
   const {isLoading :isLoadingPosition, position:geolocationPosition, getPosition}=useGeolocation(null);
  
-  const [searchParam]= useSearchParams();
-  const mapLat=searchParam.get('lat');
-  const mapLng=searchParam.get('lng');
 
   useEffect(function(){
     //Always parseFloat() query params.
