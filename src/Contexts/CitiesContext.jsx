@@ -30,13 +30,15 @@ function reducer(state, action){
       return{
         ...state,
         cities:[...state.cities,action.payload],
-        isLoading:false
+        isLoading:false,
+        currentCity:action.payload,
       }
     case "City/deleted":
       return{
         ...state,
         cities:state.cities.filter(city=>city.id!==action.payload),
-        isLoading:false
+        isLoading:false,
+        currentCity:{}
       }
       
     default:
@@ -66,6 +68,8 @@ function CitiesProvider({children}) {
   },[])
 
   async function getCity(id){
+    //Prevent calling API to render same city again and again.
+    if(Number(id)===currentCity.id) return;
       dispatch({type:"loading"})
       try{const res= await fetch(`${BASE_UR}/cities/${id}`);
         const data= await res.json();
