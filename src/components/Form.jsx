@@ -62,7 +62,8 @@ function Form() {
   fetchGeocodingData();
   
   },[lat,lng])
- function handleSubmit(e){
+
+ async function handleSubmit(e){
     e.preventDefault();
     if(!country || !date)  return;
     const newCity={
@@ -76,7 +77,9 @@ function Form() {
         lng
       } 
     }
-    setCity(newCity);
+    //Since setCity is a async func so if we will not use await it can navigate programatically to cities page without city addition in th elist
+    await setCity(newCity);
+    navigate("/app/cities")
   }
   if(!lat&&!lng) return <Message message='Start by clicking on somewhere on the map! 😼'/>
   if(isLoadingGeoCoding) return <Spinner/>
