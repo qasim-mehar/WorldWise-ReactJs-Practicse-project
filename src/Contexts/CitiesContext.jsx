@@ -56,8 +56,25 @@ function CitiesProvider({children}) {
       // setCurrentCity(data)
       }
       catch{
-        alert("error while fetching data");
+        alert("error while Adding data...");
       }finally{
+        setIsLoading(false)
+      }
+    }
+
+    async function removeCity(id){
+      setIsLoading(true);
+      try{
+        const res =await fetch(`${BASE_UR}/cities/${id}`,{
+          method:"DELETE"
+        })
+        setCities((cities)=>cities.filter(city=>city.id!==id));
+        
+
+      }catch(err){
+        alert("Error while deleting data...")
+      }
+      finally{
         setIsLoading(false)
       }
     }
@@ -68,7 +85,8 @@ function CitiesProvider({children}) {
         isLoading,
         getCity,
         currentCity,
-        setCity
+        setCity,
+        removeCity
     }}>
         {children}
     </citiesContext.Provider>
