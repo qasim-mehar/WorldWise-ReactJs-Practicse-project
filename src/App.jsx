@@ -12,6 +12,7 @@ import CityList from './components/CityList'
 import CountryList from './components/CountryList'
 import City from "./components/City"
 import Form from "./components/Form"
+import ProtectAuthentication from './pages/ProtectAuthentication'
 
 
 export default function App() {
@@ -25,7 +26,11 @@ export default function App() {
             <Route path='pricing' element={<Pricing/>}> </Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path='*' element={<PageNotFound/>}></Route>
-            <Route path='app' element={<AppLayout/>}>
+            <Route path='app' element={
+                  <ProtectAuthentication>
+                    <AppLayout/>
+                  </ProtectAuthentication>
+                }>
               //Note: Inintially we have to use a useState hook to set the currently active tab to decide what to show now we can do the same using routes as cities path is printing a different thing and countries path is diffrenet  
               <Route index element={<Navigate to="cities" replace />} />
               <Route path='cities/:id' element={<City/>}/>
