@@ -14,17 +14,16 @@ export default function Login() {
 
  function handleLogin(e) {
   e.preventDefault();
-  login(email, password);
+  if(login&& password)login(email, password);
 }
 
 useEffect(function() {
   if (isAuthenticated) {
-    navigate("/app");
+    navigate("/app",{replace:true});
   }
-  else{
-    alert("WRONG EMAIL OR PASSWORD!!!🥲")
-  }
+  
 }, [isAuthenticated, navigate]);
+
   return (
     <main className={styles.login}>
       <PageNav/>
