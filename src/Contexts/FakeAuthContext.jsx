@@ -33,7 +33,7 @@ function AuthProvider({children}){
     function login(email,pass){
      if(!email&&!pass) return;
      if(email===FAKE_USER.email && pass===FAKE_USER.password){
-        console.log('Login');
+       
         dispatch({type:"login", payload:FAKE_USER})
      }
     }

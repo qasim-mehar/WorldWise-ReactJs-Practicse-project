@@ -16,7 +16,7 @@ export default function Login() {
   e.preventDefault();
   if(login&& password)login(email, password);
 }
-
+//Our component render first and useEffect hook works after
 useEffect(function() {
   if (isAuthenticated) {
     navigate("/app",{replace:true});
