@@ -1,4 +1,4 @@
-import { createContext,useState,useEffect, useContext, useReducer } from "react";
+import { createContext,useState,useEffect, useContext, useReducer, useCallback } from "react";
 
 const BASE_UR="http://localhost:8000"
 
@@ -66,8 +66,7 @@ function CitiesProvider({children}) {
       }
     fetchCitiesData();
   },[])
-
-  async function getCity(id){
+  const getCity=useCallback(async function getCity(id){
     //Prevent calling API to render same city again and again.
     if(Number(id)===currentCity.id) return;
       dispatch({type:"loading"})
@@ -80,7 +79,8 @@ function CitiesProvider({children}) {
         catch{
           alert("error while fetching data");
         }
-    }
+    },[currentCity.id])
+  
 
      async function setCity(newCity){
         dispatch({type:"loading"})

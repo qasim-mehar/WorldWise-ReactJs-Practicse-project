@@ -17,10 +17,10 @@ function City() {
   const {id}=useParams();
   const {getCity,currentCity, isLoading}=useCities();
   const navigate= useNavigate()
-
+//HERE getCity WILL UPDATE THE STATE IN CITIESCONTEXT WHICH WILL CAUSE getCity to rerender which will eventually trigger this useEffect since getCity is in the dependency array
   useEffect(function(){
     getCity(id);
-  },[id])
+  },[id,getCity])
 
   const [searchParam, setSearchParam]= useSearchParams();
   const { cityName, emoji, date, notes } = currentCity;
